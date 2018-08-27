@@ -1,15 +1,13 @@
 <template>
     <div class="content-view">
-        <el-row>
-            <el-col :span="4" class="content-left">
-                <div class="content-left">
-                    <slider :url="url" :name="name"></slider>
-                </div>
-            </el-col>
-            <el-col :span="20" class="content-right">
-                <div class="content-right"></div>
-            </el-col>
-        </el-row>
+        <el-container>
+            <el-aside width="300px" class="content-left">
+                <slider :url="url" :name="name"></slider>
+            </el-aside>
+            <el-main class="content-right">
+                <router-view></router-view>
+            </el-main>
+        </el-container>
     </div>
 </template>
 <script>
@@ -31,21 +29,14 @@ export default {
 };
 </script>
 <style lang="scss">
-.content-view {
-    // min-width: 200vh;
-}
 .content-left {
     height: 100vh;
-    min-height: 36px;
-    border-right: 1px solid #cccccc;
+    border-radius: 0 !important;
+    border-right: 1px solid #b0bec5;
+    // margin: 0;
+    // background-color: #F2F6FC;
 }
 .content-right {
-    height: 100vh;
-    min-height: 36px;
-    background: #e5e9f2;
-}
-.row-bg {
-    padding: 10px 0;
-    background-color: #f9fafc;
+    max-height: 100vh;
 }
 </style>
