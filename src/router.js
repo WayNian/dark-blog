@@ -24,6 +24,10 @@ const router = new Router({
       path: '',
       component: () =>
         import ('./views/BlogList.vue'),
+    },{
+      path: '/blog-info',
+      component: () =>
+        import ('./views/BlogInfo.vue'),
     }, {
       path: '/about',
       component: () =>
