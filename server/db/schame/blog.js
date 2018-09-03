@@ -1,32 +1,26 @@
-const mongoose =require('mongoose');
+const mongoose = require('mongoose');
 const Schame = mongoose.Schema
 
 const blogSchame = new Schame({
-    title: {
-        type: String
-    },
-    content: {
-        type: String
-    },
+    title: String,
+    content: String,
     createAt: {
         type: Date,
-        default: Date.now()
+        default: new Date()
     },
-    updateAt: {
-        type: Date
-    },
+    updateAt: Date,
     //阅读数
-    readNum: {
-        type: Number,
-    },
+    readNum: Number,
+    //标签 [java, JavaScript]
+    label: Array
     //评论
     // comment: {
     //     type: Array,
     //     id: {
-        
+
     //     }
     // }
-},{
+}, {
     collection: 'blog'
 })
 

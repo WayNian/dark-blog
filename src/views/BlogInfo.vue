@@ -7,7 +7,7 @@
             </div>
         </div>
         <mavon-editor v-html="value" :subfield="false" :defaultOpen="defaultData" :toolbarsFlag="false" @change="changeData" v-highlight/>
-        <!-- <div v-html="value"></div> -->
+        <!-- <div v-html="value" v-highlight></div> -->
         <div class="footer-view">
         </div>
         <el-dialog title="提示" :visible.sync="dialogVisible" width="30%" :before-close="handleClose">
@@ -23,16 +23,16 @@
 <script>
 import marked from "marked";
 var rendererMD = new marked.Renderer();
-// marked.setOptions({
-//     renderer: rendererMD,
-//     gfm: true,
-//     tables: true,
-//     breaks: false,
-//     pedantic: false,
-//     sanitize: false,
-//     smartLists: true,
-//     smartypants: false
-// });
+marked.setOptions({
+    renderer: rendererMD,
+    gfm: true,
+    tables: true,
+    breaks: false,
+    pedantic: false,
+    sanitize: false,
+    smartLists: true,
+    smartypants: false
+});
 export default {
     data() {
         return {
@@ -47,7 +47,8 @@ export default {
         this.$http
             .post("blog/info", {})
             .then(res => {
-                that.value = marked('# Hello', { sanitize: true });
+                // that.value = res.data.content
+                that.value = marked(res.data.content, { sanitize: true });
                 console.log("res--->", res);
             })
             .catch(err => {
