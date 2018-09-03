@@ -37,7 +37,11 @@ const router = new Router({
       component: () =>
         import ('./views/Links.vue'),
     }]
-  }, ]
+  },{
+    path: '/admin/manage',
+    component: () =>
+      import ('./views/admin/ManageBlog.vue'),
+  }]
 })
 
 router.beforeEach((to, from, next) => {

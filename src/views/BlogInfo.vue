@@ -6,7 +6,8 @@
                 <el-rate v-model="value5" disabled show-score text-color="#ff9900" score-template="{value}"> </el-rate>
             </div>
         </div>
-        <mavon-editor v-model="value" :subfield="false" :defaultOpen="defaultData" :toolbarsFlag="false" @change="changeData" />
+        <mavon-editor v-html="value" :subfield="false" :defaultOpen="defaultData" :toolbarsFlag="false" @change="changeData" v-highlight/>
+        <!-- <div v-html="value"></div> -->
         <div class="footer-view">
         </div>
         <el-dialog title="提示" :visible.sync="dialogVisible" width="30%" :before-close="handleClose">
@@ -20,19 +21,38 @@
 </template>
 
 <script>
-import highlightjs from "highlight.js";
-import "highlight.js/styles/googlecode.css";
+import marked from "marked";
+var rendererMD = new marked.Renderer();
+// marked.setOptions({
+//     renderer: rendererMD,
+//     gfm: true,
+//     tables: true,
+//     breaks: false,
+//     pedantic: false,
+//     sanitize: false,
+//     smartLists: true,
+//     smartypants: false
+// });
 export default {
     data() {
         return {
-            value: `<blockquote>
-<p>你好</p>
-</blockquote>
-<p><code>vue</code></p>`,
+            value: "",
             defaultData: "preview",
             value5: 3.7,
             dialogVisible: false
         };
+    },
+    mounted() {
+        let that = this;
+        this.$http
+            .post("blog/info", {})
+            .then(res => {
+                that.value = marked('# Hello', { sanitize: true });
+                console.log("res--->", res);
+            })
+            .catch(err => {
+                console.log("err---->", err);
+            });
     },
     methods: {
         changeData(value, render) {
@@ -52,8 +72,8 @@ export default {
 <style lang="scss" scoped>
 .content-view {
     padding: {
-        left: 25%;
-        right: 25%;
+        left: 20%;
+        right: 20%;
     }
     .header-view {
         min-width: 600px;

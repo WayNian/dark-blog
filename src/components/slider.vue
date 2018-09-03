@@ -50,7 +50,6 @@ export default {
 <style lang = "scss" scoped>
 .head-view {
     width: 100%;
-    height: 300px;
     background-color: #009688;
     display: flex;
     align-items: center;
@@ -63,6 +62,7 @@ export default {
     }
     div {
         margin-top: 20px;
+        margin-bottom: 20px;
         font-size: 34px;
         color: #fff;
         font-weight: 400;
@@ -84,7 +84,7 @@ export default {
         text-align: center;
         box-sizing: border-box;
         outline: 0;
-        margin: 30px 0 0 0;
+        margin: 20px 0 0 0;
         -webkit-transition: 0.1s;
         transition: 0.1s;
         font-weight: 500;
