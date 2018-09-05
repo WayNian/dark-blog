@@ -45,11 +45,11 @@ export default {
     mounted() {
         let that = this;
         this.$http
-            .post("blog/info", {})
+            .post("blog/info", {id:'5b8e267524f2b82584052206'})
             .then(res => {
-                // that.value = res.data.content
-                that.value = marked(res.data.content, { sanitize: true });
                 console.log("res--->", res);
+                // that.value = res.data.content
+                that.value = marked(res.data.blogList.content, { sanitize: true });
             })
             .catch(err => {
                 console.log("err---->", err);

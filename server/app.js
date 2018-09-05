@@ -24,12 +24,9 @@ app.use(router.allowedMethods())
 
 
 app.use(async (ctx)=> {
-    ctx.body = {
-        code: 200,
-        name: '111'
-    }
+    ctx.body = '404'
+    ctx.throw(404)
 })
-app.listen(3000, () => {
-    console.log('koa start localhost:3000');
-    
+app.listen(3000, '0.0.0.0', () =>{
+    console.log('---');
 })

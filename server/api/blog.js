@@ -14,7 +14,7 @@ router.post('/write', async (ctx) => {
         }
     }).catch(error => {
         ctx.body = {
-            code: 0,
+            code: 1,
             msg: '提交失败',
             data: {}
         }
@@ -23,6 +23,7 @@ router.post('/write', async (ctx) => {
 
 router.post('/list', async (ctx) => {
     const Blog = mongoose.model('Blog')
+    console.log(ctx.request);
     await Blog.find().exec()
         .then((res) => {
             ctx.body = {
@@ -35,7 +36,7 @@ router.post('/list', async (ctx) => {
         })
         .catch(() => {
             ctx.body = {
-                code: 0,
+                code: 1,
                 msg: '获取数据失败',
                 data: {}
             }
@@ -44,13 +45,29 @@ router.post('/list', async (ctx) => {
 })
 
 router.post('/info', async (ctx) => {
-    ctx.body = {
-        code: 200,
-        msg: '',
-        data: {
-            content: '## Vue-markdownEditor\n```\naxios.interceptors.response.use(\n  response => {\n    if (response.status === 200) {\n      return Promise.resolve(response);\n    } else {\n      return Promise.reject(response);\n    }\n  },\n  // 服务器状态码不是200的情况    \n  error => {\n    console.log(\'error\', error);\n\n    // if (error.response.status) {\n    return Promise.reject(error);\n    // }\n  }\n);\n```'
-        }
-    }
+    const Blog = mongoose.model('Blog')
+    const id = ctx.request.body.id
+    console.log(id);
+    
+    await Blog.find({_id: id}).exec()
+        .then((res) => {
+            console.log(res);
+            
+            ctx.body = {
+                code: 0,
+                msg: '',
+                data: {
+                    blogList: res[0]
+                }
+            }
+        })
+        .catch(() => {
+            ctx.body = {
+                code: 1,
+                msg: '获取数据失败',
+                data: {}
+            }
+        })
 })
 
 module.exports = router

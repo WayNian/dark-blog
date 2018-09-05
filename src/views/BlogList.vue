@@ -2,15 +2,18 @@
     <div class="animated bounceInRight">
         <el-card class="box-card" v-for="(item, index) in blogList" :key="index">
             <div slot="header" class="clearfix">
-                <span class="title-text" @click="changePage()">{{item.title}}</span>
-                <span class="time-text">{{new Date(item.createAt).toLocaleString()}}</span>
-                <div class="tag-btn">
-                    <el-tag>java</el-tag>
-                    <el-tag type="success">Vue</el-tag>
-                    <el-tag type="info">Android</el-tag>
-                    <el-tag type="warning">JavaScript</el-tag>
-                    <el-tag type="danger">node</el-tag>
+                <div class="title-text" @click="changePage()">{{item.title}}</div>
+                <div class="blog-list-info">
+                    <span class="time-text">{{new Date(item.createAt).toLocaleString()}}</span>
+                    <div class="tag-btn">
+                        <el-tag>java</el-tag>
+                        <el-tag type="success">Vue</el-tag>
+                        <el-tag type="info">Android</el-tag>
+                        <el-tag type="warning">JavaScript</el-tag>
+                        <el-tag type="danger">node</el-tag>
+                    </div>
                 </div>
+
             </div>
             <div>
                 {{limitText(item.content)}}
@@ -24,11 +27,11 @@ export default {
     data() {
         return {
             key: "value",
-            blogList: [],
+            blogList: []
         };
     },
     mounted() {
-        this.getBlogList()
+        this.getBlogList();
     },
     methods: {
         limitText(content) {
@@ -38,15 +41,15 @@ export default {
             return content;
         },
         changePage() {
-            let that = this 
-            that.$router.push('/blog-info')
+            let that = this;
+            that.$router.push("/blog-info");
         },
         getBlogList() {
             let that = this;
             that.$http
                 .post("blog/list", {})
                 .then(res => {
-                    that.blogList = res.data.blogList
+                    that.blogList = res.data.blogList;
                     console.log("res--->", res);
                 })
                 .catch(err => {
@@ -85,12 +88,16 @@ export default {
             color: #4db6ac;
         }
     }
+    .blog-list-info {
+        margin-top: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
     .time-text {
         font-size: 18px;
-        margin-left: 20px;
     }
     .tag-btn {
-        float: right;
         .el-tag {
             margin-right: 10px;
         }
