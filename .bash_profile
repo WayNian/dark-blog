@@ -1,0 +1,1 @@
+export PATH=${PATH}:/Users/waynian/Documents/android-sdk-macosx/platform-tools:/Users/ShaneChen/Documents/android-sdk-macosx/tools

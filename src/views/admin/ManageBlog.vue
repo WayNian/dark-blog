@@ -24,6 +24,7 @@ export default {
     data() {
         return {
             value: "",
+            content: "",
             dialogVisible: false,
             title: "",
             lable: ['Java', 'JavaScript', 'Vue', 'Node', 'Koa', 'Html', 'CSS', 'mongo' ],
@@ -33,7 +34,9 @@ export default {
     mounted() {},
     methods: {
         changeData(value, render) {
-            console.log(value);
+            let that = this
+            that.content = render
+            console.log(that.value);
         },
         handleClose(done) {
             this.$confirm("确认关闭？")
@@ -47,7 +50,7 @@ export default {
             that.dialogVisible = false;
             const data = {
                 title: that.title,
-                content: that.value
+                content: that.content
             };
             that.$http
                 .post("blog/write", data)

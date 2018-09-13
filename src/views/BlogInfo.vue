@@ -6,7 +6,7 @@
                 <el-rate v-model="value5" disabled show-score text-color="#ff9900" score-template="{value}"> </el-rate>
             </div>
         </div>
-        <mavon-editor v-html="value" :subfield="false" :defaultOpen="defaultData" :toolbarsFlag="false" @change="changeData" v-highlight/>
+        <mavon-editor v-html="value" v-highlight/>
         <!-- <div v-html="value" v-highlight></div> -->
         <div class="footer-view">
         </div>
@@ -50,6 +50,7 @@ export default {
                 console.log("res--->", res);
                 // that.value = res.data.content
                 that.value = marked(res.data.blogList.content, { sanitize: true });
+                // that.value = res.data.blogList.content;
             })
             .catch(err => {
                 console.log("err---->", err);

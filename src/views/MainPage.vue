@@ -1,19 +1,21 @@
 <template>
-    <div class="content-view">
-        <el-container>
-            <el-aside width="300px" class="content-left">
-                <slider :url="url" :name="name"></slider>
-            </el-aside>
-            <el-main class="content-right">
-                <router-view></router-view>
-            </el-main>
-        </el-container>
+    <div class="layout">
+        <Layout>
+            <Header :style="{position: 'fixed', width: '100%'}">
+                我爱你
+            </Header>
+            <Content :style="{margin: '88px 0 0 0 0', background: '#fff', minHeight: '500px'}">
+                 <router-view></router-view>
+            </Content>
+            <Footer class="layout-footer-center">2011-2016 &copy; TalkingData</Footer>
+        </Layout>
     </div>
 </template>
 <script>
 import slider from "../components/slider.vue";
+import header from "../components/header.vue";
 export default {
-    components: { slider },
+    components: { slider, header },
     data() {
         return {
             docked: false,
@@ -29,14 +31,33 @@ export default {
 };
 </script>
 <style lang="scss">
-.content-left {
-    height: 100vh;
-    border-radius: 0 !important;
-    border-right: 1px solid #b0bec5;
-    // margin: 0;
-    // background-color: #F2F6FC;
+.layout {
+    border: 1px solid #d7dde4;
+    position: relative;
+    border-radius: 4px;
+    overflow: hidden;
 }
-.content-right {
-    max-height: 100vh;
+.ivu-layout-header {
+    background-color: #fff;
+    color: #FFCC33;
+    font-size: 30px;
+}
+.layout-logo {
+    width: 100px;
+    height: 30px;
+    background: #5b6270;
+    border-radius: 3px;
+    float: left;
+    position: relative;
+    top: 15px;
+    left: 20px;
+}
+.layout-nav {
+    width: 520px;
+    margin: 0 auto;
+    margin-right: 20px;
+}
+.layout-footer-center {
+    text-align: center;
 }
 </style>
