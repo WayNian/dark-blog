@@ -1,63 +1,111 @@
 <template>
     <div class="layout">
-        <Layout>
-            <Header :style="{position: 'fixed', width: '100%'}">
-                我爱你
-            </Header>
-            <Content :style="{margin: '88px 0 0 0 0', background: '#fff', minHeight: '500px'}">
-                 <router-view></router-view>
-            </Content>
-            <Footer class="layout-footer-center">2011-2016 &copy; TalkingData</Footer>
-        </Layout>
+        <div>
+            <Menu mode="horizontal" :active-name="getActiveName" @on-select="onSelect">
+                <div class="layout-logo">
+                    <img src="../assets/keda.png" alt="">
+                </div>
+                <div class="layout-nav">
+                    <MenuItem name="index"> 首页
+                    </MenuItem>
+                    <MenuItem name="blog-list"> 博客
+                    </MenuItem>
+                    <MenuItem name="message"> 留言板
+                    </MenuItem>
+                    <MenuItem name="tools"> 小工具
+                    </MenuItem>
+                    <MenuItem name="about"> 关于
+                    </MenuItem>
+                </div>
+            </Menu>
+        </div>
+        <div style="min-height: 90vh;">
+            <router-view></router-view>
+        </div>
     </div>
 </template>
 <script>
-import slider from "../components/slider.vue";
-import header from "../components/header.vue";
 export default {
-    components: { slider, header },
     data() {
-        return {
-            docked: false,
-            open: false,
-            url:
-                "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1535303474807&di=e2cc26f379778029d36d7572569dae3d&imgtype=0&src=http%3A%2F%2Fa3.topitme.com%2F3%2Fa2%2F69%2F112556869405c69a23o.jpg",
-            name: "waynian"
-        };
+        return {};
     },
-    created() {},
+    computed: {
+        getActiveName() {
+            let that = this;
+            return that.$route.path.slice(1);
+        }
+    },
     mounted() {},
-    methods: {}
+    methods: {
+        onSelect(name) {
+            //页面跳转
+            let that = this;
+            switch (name) {
+                case "index":
+                    that.$router.push("/index");
+                    break;
+                case "blog-list":
+                    that.$router.push("/blog-list");
+                    break;
+                case "message":
+                    that.$router.push("/message");
+                    break;
+                case "tools":
+                    that.$router.push("/tools");
+                    break;
+                case "about":
+                    that.$router.push("/about");
+                    break;
+                default:
+                    that.$router.push("/404");
+                    break;
+            }
+        }
+    }
 };
 </script>
 <style lang="scss">
+@import "../assets/icon/iconfont.css"; // 引用 iconfont.css
 .layout {
-    border: 1px solid #d7dde4;
     position: relative;
-    border-radius: 4px;
     overflow: hidden;
+    background-color: #efefef;
+}
+.ivu-menu-light {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: rgba($color: #fff, $alpha: 0.8);
 }
 .ivu-layout-header {
     background-color: #fff;
-    color: #FFCC33;
+    color: #6bc20d;
     font-size: 30px;
 }
+.ivu-layout-header {
+    padding: 0;
+}
 .layout-logo {
-    width: 100px;
-    height: 30px;
-    background: #5b6270;
-    border-radius: 3px;
+    width: 50px;
+    height: 50px;
     float: left;
     position: relative;
-    top: 15px;
-    left: 20px;
+    left: 40px;
+    img {
+        width: 100%;
+    }
+}
+.ivu-menu-item {
+    margin-right: 20px;
+}
+.ivu-menu-light.ivu-menu-horizontal .ivu-menu-item-active,
+.ivu-menu-light.ivu-menu-horizontal .ivu-menu-item:hover {
+    color: #209e85;
+    border-bottom: 2px solid #209e85;
 }
 .layout-nav {
     width: 520px;
     margin: 0 auto;
     margin-right: 20px;
-}
-.layout-footer-center {
-    text-align: center;
 }
 </style>

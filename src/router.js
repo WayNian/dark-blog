@@ -16,32 +16,31 @@ Vue.use(Router)
 const router = new Router({
   mode: 'history',
   base: process.env.BASE_URL,
-  routes: [{
-    path: '/',
-    component: () =>
-      import ('./views/MainPage.vue'),
-    children: [{
-      path: '',
-      component: () =>
-        import ('./views/BlogList.vue'),
+  routes: [
+    {
+    path: '/', redirect: '/index'
     },{
-      path: '/blog-info',
-      component: () =>
-        import ('./views/BlogInfo.vue'),
-    }, {
-      path: '/about',
-      component: () =>
-        import ('./views/About.vue'),
-    }, {
-      path: '/link',
-      component: () =>
-        import ('./views/Links.vue'),
+      path: '/',
+      component: () => import ('./views/MainPage.vue'),
+        children: [
+        {
+          path: '/index', component: () => import ('./views/Index.vue'),
+        },{
+          path: '/blog-list', component: () => import ('./views/BlogList.vue'),
+        },{
+          path: '/blog-info', component: () => import ('./views/BlogInfo.vue'),
+        }, {
+          path: '/message', component: () => import ('./views/Message.vue'),
+        }, {
+          path: '/tools',  component: () => import ('./views/Tools.vue'),
+        },{
+          path: '/about',  component: () => import ('./views/About.vue'),
+        }]
+    },{
+      path: '/admin/manage', component: () => import ('./views/admin/ManageBlog.vue'),
+    },{
+      path: "*", component: () => import ('./views/404.vue'),
     }]
-  },{
-    path: '/admin/manage',
-    component: () =>
-      import ('./views/admin/ManageBlog.vue'),
-  }]
 })
 
 router.beforeEach((to, from, next) => {

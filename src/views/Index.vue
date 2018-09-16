@@ -1,6 +1,6 @@
 <template>
     <div class="layout">
-        关于
+        这是首页
     </div>
 </template>
 

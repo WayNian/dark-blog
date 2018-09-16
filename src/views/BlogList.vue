@@ -1,25 +1,49 @@
 <template>
-    <div class="animated bounceInRight">
-        <el-card class="box-card" v-for="(item, index) in blogList" :key="index">
-            <div slot="header" class="clearfix">
-                <div class="title-text" @click="changePage()">{{item.title}}</div>
-                <div class="blog-list-info">
-                    <span class="time-text">{{new Date(item.createAt).toLocaleString()}}</span>
-                    <div class="tag-btn">
-                        <el-tag>java</el-tag>
-                        <el-tag type="success">Vue</el-tag>
-                        <el-tag type="info">Android</el-tag>
-                        <el-tag type="warning">JavaScript</el-tag>
-                        <el-tag type="danger">node</el-tag>
-                    </div>
-                </div>
+    <div class="container">
+        <div class="animated bounceInLeft list-view">
+            <Card :bordered="false">
+                <p slot="title">No border title</p>
+                <img src="../assets/keda.png" alt="">
+                <article>Content of no border type. Content of no border type. Content of no border type. Content of no border type. 
+                    Content of no border type. Content of no border type. Content of no border type. Content of no border type. 
+                    Content of no border type. Content of no border type. Content of no border type. Content of no border type. 
+                    Content of no border type. Content of no border type. Content of no border type. Content of no border type. 
+                    Content of no border type. Content of no border type. Content of no border type. Content of no border type. 
+                    Content of no border type. Content of no border type. Content of no border type. Content of no border type. 
+                    Content of no border type. Content of no border type. Content of no border type. Content of no border type. 
+                    Content of no border type. Content of no border type. Content of no border type. Content of no border type. 
+                    Content of no border type. Content of no border type. Content of no border type. Content of no border type. 
+                    Content of no border type. Content of no border type. Content of no border type. Content of no border type. 
+                    Content of no border type. Content of no border type. Content of no border type. Content of no border type. 
+                </article>
+            </Card>
 
-            </div>
-            <div>
-                {{limitText(item.content)}}
-            </div>
-        </el-card>
+            <Card :bordered="false">
+                <p slot="title">No border title</p>
+                <p>Content of no border type. Content of no border type. Content of no border type. Content of no border type. </p>
+            </Card>
+        </div>
+        <div class="right-view animated bounceInRight">
+            <Card title="导航" icon="md-list-box" :padding="0" shadow style="width: 300px;">
+            <CellGroup>
+                <Cell title="Only show titles" />
+                <Cell title="Display label content" label="label content" />
+                <Cell title="Display right content" extra="details" />
+                <Cell title="Link" extra="details" to="/components/button" />
+                <Cell title="Open link in new window" to="/components/button" target="_blank" />
+                <Cell title="Disabled" disabled />
+                <Cell title="Selected" selected />
+                <Cell title="With Badge" to="/components/badge">
+                    <Badge :count="10" slot="extra" />
+                </Cell>
+                <Cell title="With Switch">
+                    <Switch slot="extra" />
+                </Cell>
+            </CellGroup>
+        </Card>
+        </div>
     </div>
+
 </template>
 
 <script>
@@ -61,46 +85,27 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.text {
-    font-size: 14px;
+.container {
+    margin-top: 80px;
+    display: flex;
+    justify-content: center;
 }
-
-.item {
-    margin-bottom: 18px;
+.list-view {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
 }
-
-.clearfix:before,
-.clearfix:after {
-    display: table;
-    content: "";
+.ivu-card {
+    width: 1000px;
+    border-radius: 0;
+    border: 1px solid #efefef;
+    img {
+        float: left;
+        width: 100px;
+        height: 100px;
+    }
 }
-.clearfix:after {
-    clear: both;
-}
-
-.box-card {
-    width: 80%;
-    margin-bottom: 20px;
-    .title-text {
-        font-size: 24px;
-        cursor: pointer;
-        &:hover {
-            color: #4db6ac;
-        }
-    }
-    .blog-list-info {
-        margin-top: 5px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-    }
-    .time-text {
-        font-size: 18px;
-    }
-    .tag-btn {
-        .el-tag {
-            margin-right: 10px;
-        }
-    }
+.right-view {
+    margin-left: 20px; 
 }
 </style>

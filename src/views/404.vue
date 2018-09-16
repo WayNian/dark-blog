@@ -1,6 +1,6 @@
 <template>
-    <div class="layout">
-        关于
+    <div>
+        404页面
     </div>
 </template>
 
@@ -11,7 +11,5 @@
 </script>
 
 <style scoped>
-.layout {
-    margin-top: 80px;
-}
+
 </style>

@@ -1,6 +1,6 @@
 <template>
     <div class="layout">
-        关于
+        留言板
     </div>
 </template>
 

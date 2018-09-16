@@ -1,6 +1,6 @@
 <template>
     <div class="layout">
-        关于
+        小工具
     </div>
 </template>
 
