@@ -36,7 +36,6 @@ export default {
         changeData(value, render) {
             let that = this
             that.content = render
-            console.log(that.value);
         },
         handleClose(done) {
             this.$confirm("确认关闭？")
