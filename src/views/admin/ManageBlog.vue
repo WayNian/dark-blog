@@ -1,5 +1,5 @@
 <template>
-    <div class="content-view">
+    <div class="layout">
         <div class="title-view">
             <el-input v-model="title" placeholder="标题"></el-input>
         </div>
@@ -66,7 +66,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.content-view {
+.layout {
     padding: 10px;
     .title-view {
         margin-bottom: 20px;
