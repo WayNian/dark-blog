@@ -1,9 +1,8 @@
 <template>
     <div class="content-view">
         <div class="header-view">
-            <div class="title-text">Vue的入门到放弃</div>
+            <div class="title-text">{{title}}</div>
             <div class="blog-info-text">2018-08-26 字数 128 阅读 300 评论 20
-                <el-rate v-model="value5" disabled show-score text-color="#ff9900" score-template="{value}"> </el-rate>
             </div>
         </div>
         <mavon-editor v-html="value" v-highlight/>
@@ -39,22 +38,12 @@ export default {
             value: "",
             defaultData: "preview",
             value5: 3.7,
-            dialogVisible: false
+            dialogVisible: false,
+            title: ""
         };
     },
     mounted() {
-        let that = this;
-        this.$http
-            .post("blog/info", {id:'5b8e267524f2b82584052206'})
-            .then(res => {
-                console.log("res--->", res);
-                // that.value = res.data.content
-                that.value = marked(res.data.blogList.content, { sanitize: true });
-                // that.value = res.data.blogList.content;
-            })
-            .catch(err => {
-                console.log("err---->", err);
-            });
+        this.getBlogInfo();
     },
     methods: {
         changeData(value, render) {
@@ -66,6 +55,24 @@ export default {
                     done();
                 })
                 .catch(_ => {});
+        },
+        getBlogInfo() {
+            let that = this;
+            let uuid = that.$route.params.uuid;
+            this.$http
+                .post("blog/info", { uuid })
+                .then(res => {
+                    console.log("res--->", res);
+                    // that.value = res.data.content
+                    that.title = res.data.blogList.title;
+                    that.value = marked(res.data.blogList.content, {
+                        sanitize: true
+                    });
+                    // that.value = res.data.blogList.content;
+                })
+                .catch(err => {
+                    console.log("err---->", err);
+                });
         }
     }
 };
@@ -77,6 +84,7 @@ export default {
         left: 20%;
         right: 20%;
     }
+    margin-top: 80px;
     .header-view {
         min-width: 600px;
     }

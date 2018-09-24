@@ -46,13 +46,12 @@ router.post('/list', async (ctx) => {
 
 router.post('/info', async (ctx) => {
     const Blog = mongoose.model('Blog')
-    const id = ctx.request.body.id
-    console.log(id);
+    const uuid = ctx.request.body.uuid
+    console.log(uuid);
     
-    await Blog.find({_id: id}).exec()
+    await Blog.find({uuid}).exec()
         .then((res) => {
             console.log(res);
-            
             ctx.body = {
                 code: 0,
                 msg: '',

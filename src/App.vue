@@ -9,7 +9,4 @@
     margin: 0;
     padding: 0;
 }
-#nprogress .bar {
-    background: #009688 !important;
-}
 </style>

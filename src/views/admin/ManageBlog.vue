@@ -67,6 +67,7 @@ export default {
 <style lang="scss" scoped>
 .layout {
     padding: 10px;
+    display: inline;
     .title-view {
         margin-bottom: 20px;
     }

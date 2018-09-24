@@ -2,18 +2,21 @@
     <div class="container">
         <div class="animated bounceInLeft list-view">
             <Card :bordered="false" v-for="(item, index) in blogList" :key="index">
-                <span slot="title">{{item.title}}</span>
+                <span slot="title" class="title-text" @click="toBlogInfo(item)" style="cursor:pointer">{{item.title}}</span>
                 <div>
                     <!-- <div class="time-viewß"> -->
                     {{getTime(item.createAt)}}
+                    <span class="blog-list-info-text">
+                        查看：200  评论：1
+                    </span>
                     <!-- </div> -->
-                    <!-- <div class="tag-view"> -->
-                    <Tag color="default">default</Tag>
-                    <Tag color="primary">primary</Tag>
-                    <Tag color="success">success</Tag>
-                    <Tag color="error">error</Tag>
-                    <Tag color="warning">warning</Tag>
-                    <!-- </div> -->
+                    <div class="tag-view">
+                        <Tag color="default">default</Tag>
+                        <Tag color="primary">primary</Tag>
+                        <Tag color="success">success</Tag>
+                        <Tag color="error">error</Tag>
+                        <Tag color="warning">warning</Tag>
+                    </div>
                 </div>
 
             </Card>
@@ -43,8 +46,18 @@
                     </Cell>
                 </CellGroup>
             </Card>
-            <Card title="导航" icon="md-list-box" :padding="0" shadow style="width: 340px; height: 400px; overflow: scroll;">
-                <Tree :data="data1" style="padding-left: 10px;"></Tree>
+            <Card title="导航" icon="md-list-box" :padding="0" shadow style="width: 340px; height: 400px;">
+                <Tag color="red" class="right-tag">red</Tag>
+                <Tag color="volcano" class="right-tag">volcano</Tag>
+                <Tag color="orange" class="right-tag">orange</Tag>
+                <Tag color="gold" class="right-tag">gold</Tag>
+                <Tag color="yellow" class="right-tag">yellow</Tag>
+                <Tag color="lime" class="right-tag">lime</Tag>
+                <Tag color="green" class="right-tag">green</Tag>
+                <Tag color="cyan" class="right-tag">cyan</Tag>
+                <Tag color="blue" class="right-tag">blue</Tag>
+                <Tag color="geekblue" class="right-tag">geekblue</Tag>
+                <Tag color="purple" class="right-tag">purple</Tag>
             </Card>
         </div>
     </div>
@@ -52,69 +65,12 @@
 </template>
 
 <script>
+const dateFormat = require('dateformat');
 export default {
     data() {
         return {
             key: "value",
-            blogList: [],
-            data1: [
-                {
-                    title: "2018年09月",
-                    // expand: true,
-                    children: [
-                        {
-                            title: "2018年09月22日",
-                            children: [
-                                {
-                                    title: "2018年09月22日"
-                                },
-                                {
-                                    title: "2018年09月22日"
-                                }
-                            ]
-                        },
-                        {
-                            title: "2018年09月22日",
-                            children: [
-                                {
-                                    title: "2018年09月22日"
-                                },
-                                {
-                                    title: "2018年09月22日"
-                                }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    title: "2018年08月",
-                    // expand: true,
-                    children: [
-                        {
-                            title: "2018年09月22日",
-                            children: [
-                                {
-                                    title: "2018年09月22日"
-                                },
-                                {
-                                    title: "2018年09月22日"
-                                }
-                            ]
-                        },
-                        {
-                            title: "2018年09月22日",
-                            children: [
-                                {
-                                    title: "2018年09月22日"
-                                },
-                                {
-                                    title: "2018年09月22日"
-                                }
-                            ]
-                        }
-                    ]
-                }
-            ]
+            blogList: []
         };
     },
     mounted() {
@@ -145,7 +101,13 @@ export default {
         },
         getTime(time) {
             let date = new Date(time);
-            return date.toLocaleDateString();
+            return dateFormat(date, "yyyy-mm-dd HH:MM:ss");
+        },
+        toBlogInfo(item) {
+            this.$router.push({
+                name: "blog-info",
+                params: { uuid: item.uuid }
+            });
         }
     }
 };
@@ -169,15 +131,21 @@ export default {
     border: 1px solid #efefef;
     line-height: 30px;
     margin-bottom: 20px;
-    span {
+    .title-text {
         font-size: 20px;
         font-weight: 700;
+    }
+    .blog-list-info-text {
+        margin-left: 20px;
     }
 }
 .right-view {
     margin-left: 20px;
 }
-.ivu-tag {
+.tag-view {
     float: right;
+}
+.right-tag {
+    margin: 5px 10px;
 }
 </style>
