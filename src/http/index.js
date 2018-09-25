@@ -8,9 +8,9 @@ import router from '../router';
 if (process.env.NODE_ENV == 'development') {
   axios.defaults.baseURL = 'http://localhost:3000/api/';
 } else if (process.env.NODE_ENV == 'debug') {
-  axios.defaults.baseURL = 'http://92.168.81.235:8848/api/';
+  axios.defaults.baseURL = 'http://123.207.57.50:3000/api/';
 } else if (process.env.NODE_ENV == 'production') {
-  axios.defaults.baseURL = 'http://92.168.81.235:8848/api/';
+  axios.defaults.baseURL = 'http://123.207.57.50:3000/api/';
 }
 
 // 请求超时时间

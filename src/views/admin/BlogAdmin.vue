@@ -2,18 +2,18 @@
     <div class="layout">
         <Layout>
             <Sider ref="side1" hide-trigger collapsible :collapsed-width="78" v-model="isCollapsed">
-                <Menu active-name="1-2" theme="dark" width="auto" :class="menuitemClasses">
-                    <MenuItem name="1-1">
+                <Menu :active-name="activeMenu" theme="dark" width="auto" :class="menuitemClasses">
+                    <MenuItem name="blog-data" to="/admin/blog-data">
                     <Icon type="ios-navigate"></Icon>
-                    <span>Option 1</span>
+                    <span>数据统计</span>
                     </MenuItem>
-                    <MenuItem name="1-2">
+                    <MenuItem name="create-blog" to="/admin/create-blog">
                     <Icon type="ios-search"></Icon>
-                    <span>Option 2</span>
+                    <span>新建博客</span>
                     </MenuItem>
-                    <MenuItem name="1-3">
+                    <MenuItem name="manage-blog" to="/admin/manage-blog">
                     <Icon type="ios-settings"></Icon>
-                    <span>Option 3</span>
+                    <span>管理博客</span>
                     </MenuItem>
                 </Menu>
             </Sider>
@@ -21,8 +21,8 @@
                 <Header :style="{padding: 0}" class="layout-header-bar">
                     <Icon @click.native="collapsedSider" :class="rotateIcon" :style="{margin: '0 20px'}" type="md-menu" size="24"></Icon>
                 </Header>
-                <Content :style="{margin: '20px', background: '#fff', minHeight: '260px'}">
-                       <router-view></router-view>
+                <Content :style="{margin: '20px', background: '#fff', minHeight: '260px', borderRadius: '5px'}">
+                    <router-view></router-view>
                 </Content>
             </Layout>
         </Layout>
@@ -36,6 +36,11 @@ export default {
         };
     },
     computed: {
+        //设置默认激活的菜单，根据路由地址决定
+        //防止手动输入路由，菜单不改变
+         activeMenu() {
+            return this.$route.path.split('/')[2];
+        },
         rotateIcon() {
             return ["menu-icon", this.isCollapsed ? "rotate-icon" : ""];
         },

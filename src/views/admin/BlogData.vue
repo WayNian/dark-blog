@@ -1,6 +1,6 @@
 <template>
     <div>
-        博客管理
+        数据统计
     </div>
 </template>
 

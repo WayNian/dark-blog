@@ -41,7 +41,11 @@ const router = new Router({
       path: '/admin', component: () => import ('./views/admin/BlogAdmin.vue'),
       children: [
         {
-          path: 'manage', component: () => import ('./views/admin/ManageBlog.vue'),
+          path: 'blog-data', component: () => import ('./views/admin/BlogData.vue'),
+        },{
+          path: 'create-blog', component: () => import ('./views/admin/CreateBlog.vue'),
+        },{
+          path: 'manage-blog', component: () => import ('./views/admin/ManageBlog.vue'),
         }
       ]
     },{

@@ -17,7 +17,7 @@ const blogSchame = new Schame({
     //阅读数
     readNum: Number,
     //标签 [java, JavaScript]
-    label: Array
+    tags: Array
     //评论
     // comment: {
     //     type: Array,
