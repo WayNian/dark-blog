@@ -22,6 +22,9 @@
         <div style="min-height: 90vh;">
             <router-view></router-view>
         </div>
+        <div class="footer">
+            <!-- 已默默运行{{}} -->
+        </div>
     </div>
 </template>
 <script>
@@ -35,7 +38,9 @@ export default {
             return that.$route.path.slice(1);
         }
     },
-    mounted() {},
+    mounted() {
+        this.getRunTime()
+    },
     methods: {
         onSelect(name) {
             //页面跳转
@@ -60,6 +65,13 @@ export default {
                     that.$router.push("/404");
                     break;
             }
+        },
+        getRunTime() {
+            // let that = this
+            // let createTime = new Date('2018/09/26 13:58')
+            // let empDate = Date.now() - createTime
+            // let year = empDate/ (1000 * 60 * 24)
+            // console.log(empDate/ (1000 * 60));
         }
     }
 };
@@ -107,5 +119,12 @@ export default {
     width: 520px;
     margin: 0 auto;
     margin-right: 20px;
+}
+.footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    font-size: 16px;
 }
 </style>
