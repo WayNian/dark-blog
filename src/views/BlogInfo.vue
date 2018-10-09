@@ -86,7 +86,7 @@ export default {
         padding: 10px;
     }
     .blog-info-text {
-        font-size: 16px;
+        font-size: 14px;
         padding: 10px;
         margin-bottom: 20px;
         color: #cccccc;

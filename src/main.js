@@ -5,7 +5,7 @@ import animate from 'animate.css'
 import hightLight from './utils/highlight'
 import {get, post} from './http'
 import App from './App.vue'
-import router from './router'
+import router from './router/index'
 import store from './store'
 import './assets/icon/iconfont.css'
 
