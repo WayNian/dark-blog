@@ -30,90 +30,90 @@
 </template>
 <script>
 export default {
-    data() {
-        return {
-            isCollapsed: false
-        };
+  data() {
+    return {
+      isCollapsed: false
+    };
+  },
+  computed: {
+    //设置默认激活的菜单，根据路由地址决定
+    //防止手动输入路由，菜单不改变
+    activeMenu() {
+      return this.$route.path.split("/")[2];
     },
-    computed: {
-        //设置默认激活的菜单，根据路由地址决定
-        //防止手动输入路由，菜单不改变
-         activeMenu() {
-            return this.$route.path.split('/')[2];
-        },
-        rotateIcon() {
-            return ["menu-icon", this.isCollapsed ? "rotate-icon" : ""];
-        },
-        menuitemClasses() {
-            return ["menu-item", this.isCollapsed ? "collapsed-menu" : ""];
-        }
+    rotateIcon() {
+      return ["menu-icon", this.isCollapsed ? "rotate-icon" : ""];
     },
-    methods: {
-        collapsedSider() {
-            this.$refs.side1.toggleCollapse();
-        }
+    menuitemClasses() {
+      return ["menu-item", this.isCollapsed ? "collapsed-menu" : ""];
     }
+  },
+  methods: {
+    collapsedSider() {
+      this.$refs.side1.toggleCollapse();
+    }
+  }
 };
 </script>
 <style scoped>
 .layout[data-v-204e7c43] {
-    border: 0;
-    border-radius: 0;
+  border: 0;
+  border-radius: 0;
 }
 .ivu-layout-sider {
-    height: 100vh;
+  height: 100vh;
 }
 .layout {
-    border: 1px solid #d7dde4;
-    background: #f5f7f9;
-    position: relative;
-    border-radius: 4px;
-    overflow: hidden;
+  border: 1px solid #d7dde4;
+  background: #f5f7f9;
+  position: relative;
+  border-radius: 4px;
+  overflow: hidden;
 }
 .ivu-layout-content {
-    max-height: 85vh;
-    overflow: scroll;
+  max-height: 85vh;
+  overflow: scroll;
 }
 .layout-header-bar {
-    background: #fff;
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+  background: #fff;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
 }
 .layout-logo-left {
-    width: 90%;
-    height: 30px;
-    background: #5b6270;
-    border-radius: 3px;
-    margin: 15px auto;
+  width: 90%;
+  height: 30px;
+  background: #5b6270;
+  border-radius: 3px;
+  margin: 15px auto;
 }
 .menu-icon {
-    transition: all 0.3s;
+  transition: all 0.3s;
 }
 .rotate-icon {
-    transform: rotate(-90deg);
+  transform: rotate(-90deg);
 }
 .menu-item span {
-    display: inline-block;
-    overflow: hidden;
-    width: 69px;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    vertical-align: bottom;
-    transition: width 0.2s ease 0.2s;
+  display: inline-block;
+  overflow: hidden;
+  width: 69px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  vertical-align: bottom;
+  transition: width 0.2s ease 0.2s;
 }
 .menu-item i {
-    transform: translateX(0px);
-    transition: font-size 0.2s ease, transform 0.2s ease;
-    vertical-align: middle;
-    font-size: 16px;
+  transform: translateX(0px);
+  transition: font-size 0.2s ease, transform 0.2s ease;
+  vertical-align: middle;
+  font-size: 16px;
 }
 .collapsed-menu span {
-    width: 0px;
-    transition: width 0.2s ease;
+  width: 0px;
+  transition: width 0.2s ease;
 }
 .collapsed-menu i {
-    transform: translateX(5px);
-    transition: font-size 0.2s ease 0.2s, transform 0.2s ease 0.2s;
-    vertical-align: middle;
-    font-size: 22px;
+  transform: translateX(5px);
+  transition: font-size 0.2s ease 0.2s, transform 0.2s ease 0.2s;
+  vertical-align: middle;
+  font-size: 22px;
 }
 </style>

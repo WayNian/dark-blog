@@ -65,87 +65,87 @@
 </template>
 
 <script>
-const dateFormat = require('dateformat');
+const dateFormat = require("dateformat");
 export default {
-    data() {
-        return {
-            key: "value",
-            blogList: []
-        };
+  data() {
+    return {
+      key: "value",
+      blogList: []
+    };
+  },
+  mounted() {
+    this.getBlogList();
+  },
+  methods: {
+    limitText(content) {
+      if (content.length > 100) {
+        return content.slice(0, 100) + "...";
+      }
+      return content;
     },
-    mounted() {
-        this.getBlogList();
+    changePage() {
+      let that = this;
+      that.$router.push("/blog-info");
     },
-    methods: {
-        limitText(content) {
-            if (content.length > 100) {
-                return content.slice(0, 100) + "...";
-            }
-            return content;
-        },
-        changePage() {
-            let that = this;
-            that.$router.push("/blog-info");
-        },
-        getBlogList() {
-            let that = this;
-            that.$http
-                .post("blog/list", {})
-                .then(res => {
-                    that.blogList = res.data.blogList;
-                    console.log("res--->", res);
-                })
-                .catch(err => {
-                    console.log("err---->", err);
-                });
-        },
-        getTime(time) {
-            let date = new Date(time);
-            return dateFormat(date, "yyyy-mm-dd HH:MM:ss");
-        },
-        toBlogInfo(item) {
-            this.$router.push({
-                name: "blog-info",
-                params: { uuid: item.uuid }
-            });
-        }
+    getBlogList() {
+      let that = this;
+      that.$http
+        .post("blog/list", {})
+        .then(res => {
+          that.blogList = res.data.blogList;
+          console.log("res--->", res);
+        })
+        .catch(err => {
+          console.log("err---->", err);
+        });
+    },
+    getTime(time) {
+      let date = new Date(time);
+      return dateFormat(date, "yyyy-mm-dd HH:MM:ss");
+    },
+    toBlogInfo(item) {
+      this.$router.push({
+        name: "blog-info",
+        params: { uuid: item.uuid }
+      });
     }
+  }
 };
 </script>
 
 <style lang="scss" scoped>
 .container {
-    margin-top: 80px;
-    display: flex;
-    justify-content: center;
+  margin-top: 80px;
+  display: flex;
+  justify-content: center;
 }
 .list-view {
-    display: flex;
-    width: 60%;
-    align-items: center;
-    flex-direction: column;
+  display: flex;
+  width: 60%;
+  align-items: center;
+  flex-direction: column;
 }
 .ivu-card {
-    width: 100%;
-    border-radius: 0;
-    border: 1px solid #efefef;
-    line-height: 30px;
-    margin-bottom: 20px;
-    .title-text {
-        font-size: 20px;
-        font-weight: 700;
-    }
-    .blog-list-info-text {
-        margin-left: 20px;
-    }
+  width: 100%;
+  border-radius: 0;
+  border: 1px solid #efefef;
+  line-height: 30px;
+  margin-bottom: 20px;
+  .title-text {
+    font-size: 20px;
+    font-weight: 700;
+  }
+  .blog-list-info-text {
+    margin-left: 20px;
+  }
 }
 .right-view {
-    margin-left: 20px;
+  margin-left: 20px;
 }
 .tag-view {
-    float: right;
+  float: right;
 }
 .right-tag {
-    margin: 5px 10px;
+  margin: 5px 10px;
 }
 </style>
