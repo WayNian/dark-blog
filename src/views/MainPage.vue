@@ -3,7 +3,7 @@
         <div>
             <Menu mode="horizontal" :active-name="getActiveName" @on-select="onSelect">
                 <div class="layout-logo">
-                    <img src="../assets/keda.png" alt="">
+                    <img src="../assets/keda.png" alt="" @click="goManageBlog">
                 </div>
                 <div class="layout-nav">
                     <MenuItem name="index"> 首页
@@ -65,6 +65,9 @@ export default {
           that.$router.push("/404");
           break;
       }
+    },
+    goManageBlog() {
+      this.$router.push("/admin/create-blog");
     },
     getRunTime() {
       // let that = this

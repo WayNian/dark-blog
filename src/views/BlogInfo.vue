@@ -57,11 +57,11 @@ export default {
         .then(res => {
           console.log("res--->", res);
           // that.value = res.data.content
-          that.title = res.data.blogList.title;
-          that.value = marked(res.data.blogList.content, {
-            sanitize: true
-          });
-          // that.value = res.data.blogList.content;
+          that.title = res.data.blogInfo.title;
+          // that.value = marked(res.data.blogInfo.content, {
+          //   sanitize: true
+          // });
+          that.value = res.data.blogInfo.content;
         })
         .catch(err => {
           console.log("err---->", err);

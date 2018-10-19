@@ -17,7 +17,10 @@ import {
   Input,
   Message,
   Modal,
-  Tag
+  Tag,
+  Form,
+  CheckboxGroup,
+  Checkbox
 } from "iview";
 import "iview/dist/styles/iview.css";
 import staticRoute from "./staticRoute";
@@ -34,11 +37,14 @@ Vue.component("Cell", Cell);
 Vue.component("Menu", Menu);
 Vue.component("MenuItem", MenuItem);
 Vue.component("LoadingBar", LoadingBar);
+Vue.component("Form", Form);
 Vue.component("FormItem", FormItem);
 Vue.component("Input", Input);
 Vue.component("Message", Message);
 Vue.component("Modal", Modal);
 Vue.component("Tag", Tag);
+Vue.component("CheckboxGroup", CheckboxGroup);
+Vue.component("Checkbox", Checkbox);
 
 LoadingBar.config({
   color: "#009688",

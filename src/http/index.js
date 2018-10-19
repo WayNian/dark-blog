@@ -57,7 +57,7 @@ axios.interceptors.response.use(
  * @param {String} url [请求的url地址]
  * @param {Object} params [请求时携带的参数]
  */
-export const get = (url, params) => {
+const get = (url, params) => {
   return new Promise((resolve, reject) => {
     axios
       .get(url, {
@@ -76,7 +76,7 @@ export const get = (url, params) => {
  * @param {String} url [请求的url地址]
  * @param {Object} params [请求时携带的参数]
  */
-export const post = (url, params = {}) => {
+const post = (url, params = {}) => {
   return new Promise((resolve, reject) => {
     axios
       .post(url, params)
@@ -88,3 +88,8 @@ export const post = (url, params = {}) => {
       });
   });
 };
+
+export default {
+  get,
+  post
+}

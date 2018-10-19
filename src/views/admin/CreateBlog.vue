@@ -20,6 +20,7 @@
 </template>
 
 <script>
+import marked from "marked";
 export default {
   data() {
     return {
@@ -44,7 +45,9 @@ export default {
   methods: {
     changeData(value, render) {
       let that = this;
-      that.content = value;
+      that.content =  marked(value, {
+            sanitize: true
+          });
     },
     handleClose(done) {
       this.$confirm("确认关闭？")
