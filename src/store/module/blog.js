@@ -47,6 +47,18 @@ const actions = {
         .catch(() => {});
     });
   },
+  createBlog({
+    commit
+  }, blogInfo) {
+    return new Promise(resolve => {
+      http
+        .post("blog/write", {...blogInfo})
+        .then(res => {
+          resolve();
+        })
+        .catch(() => {});
+    });
+  },
 };
 
 export default {

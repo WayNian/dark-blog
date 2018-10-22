@@ -71,6 +71,7 @@ export default {
       getHotBlogList: "getHotBlogList"
     }),
     limitTitle(content) {
+      if(!content) return
       if (content.length > 22) {
         return content.slice(0, 22) + "...";
       }

@@ -20,7 +20,7 @@ import {
   Tag,
   Form,
   CheckboxGroup,
-  Checkbox
+  Checkbox,
 } from "iview";
 import "iview/dist/styles/iview.css";
 import staticRoute from "./staticRoute";
@@ -40,7 +40,6 @@ Vue.component("LoadingBar", LoadingBar);
 Vue.component("Form", Form);
 Vue.component("FormItem", FormItem);
 Vue.component("Input", Input);
-Vue.component("Message", Message);
 Vue.component("Modal", Modal);
 Vue.component("Tag", Tag);
 Vue.component("CheckboxGroup", CheckboxGroup);
@@ -52,6 +51,7 @@ LoadingBar.config({
   height: 2
 });
 
+Vue.prototype.$Message = Message 
 Vue.use(Router);
 
 const router = new Router({
