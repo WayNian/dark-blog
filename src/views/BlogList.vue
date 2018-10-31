@@ -11,11 +11,11 @@
                     </span>
                     <!-- </div> -->
                     <div class="tag-view">
-                        <Tag color="default">default</Tag>
-                        <Tag color="primary">primary</Tag>
+                        <Tag color="default" v-for="(tagsItem, index) in item.tags" :key="index">{{tagsItem}}</Tag>
+                        <!-- <Tag color="primary">primary</Tag>
                         <Tag color="success">success</Tag>
                         <Tag color="error">error</Tag>
-                        <Tag color="warning">warning</Tag>
+                        <Tag color="warning">warning</Tag> -->
                     </div>
                 </div>
 
@@ -88,7 +88,7 @@ export default {
     toBlogInfo(item) {
       this.$router.push({
         name: "blog-info",
-        params: { uuid: item.uuid }
+        params: { id: item._id }
       });
     }
   }

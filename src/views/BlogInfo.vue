@@ -1,11 +1,11 @@
 <template>
     <div class="content-view">
         <div class="header-view">
-            <div class="title-text">{{title}}</div>
+            <div class="title-text">{{blogInfo.title}}</div>
             <div class="blog-info-text">2018-08-26 字数 128 阅读 300 评论 20
             </div>
         </div>
-        <mavon-editor v-html="value" v-highlight/>
+        <mavon-editor v-html="formatContent(blogInfo)" v-highlight/>
         <!-- <div v-html="value" v-highlight></div> -->
         <div class="footer-view">
         </div>
@@ -13,6 +13,7 @@
 </template>
 
 <script>
+import { mapActions, mapState } from "vuex";
 import marked from "marked";
 var rendererMD = new marked.Renderer();
 marked.setOptions({
@@ -35,13 +36,19 @@ export default {
       title: ""
     };
   },
+   computed: {
+    ...mapState("blog",{
+      blogInfo: state => state.blogInfo,
+    })
+  },
   mounted() {
-    this.getBlogInfo();
+    let id = this.$route.params.id;
+    this.getBlogInfo(id);
   },
   methods: {
-    changeData(value, render) {
-      console.log(render);
-    },
+     ...mapActions("blog", {
+      getBlogInfo: "getBlogInfo",
+    }),
     handleClose(done) {
       this.$confirm("确认关闭？")
         .then(() => {
@@ -49,23 +56,10 @@ export default {
         })
         .catch(() => {});
     },
-    getBlogInfo() {
-      let that = this;
-      let uuid = that.$route.params.uuid;
-      this.$http
-        .post("blog/info", { uuid })
-        .then(res => {
-          console.log("res--->", res);
-          // that.value = res.data.content
-          that.title = res.data.blogInfo.title;
-          // that.value = marked(res.data.blogInfo.content, {
-          //   sanitize: true
-          // });
-          that.value = res.data.blogInfo.content;
-        })
-        .catch(err => {
-          console.log("err---->", err);
-        });
+    formatContent(content) {
+      console.log(content.content);
+      return content.content
+      
     }
   }
 };

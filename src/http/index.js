@@ -45,8 +45,6 @@ axios.interceptors.response.use(
   },
   // 服务器状态码不是200的情况
   error => {
-    console.log("error", error);
-
     // if (error.response.status) {
     return Promise.reject(error);
     // }
