@@ -1,3 +1,4 @@
+import "babel-polyfill";
 import Vue from "vue";
 import mavonEditor from "mavon-editor"; // markdwon
 import "mavon-editor/dist/css/index.css";
