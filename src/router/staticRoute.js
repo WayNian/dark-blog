@@ -31,7 +31,7 @@ const staticRoute = [
   },
   {
     name: "blog-info",
-    path: "/blog-info/:uuid",
+    path: "/blog-info/:id",
     component: () => import("../views/BlogInfo.vue")
   },
   {

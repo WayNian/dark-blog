@@ -12,8 +12,6 @@ const mutations = {
   },
   setHotBlogList(state, data) {
     state.hotBlogList = data;
-    console.log(JSON.stringify(state));
-    
   },
   setBlogInfo(state, data) {
     state.blogInfo = data;
@@ -42,6 +40,19 @@ const actions = {
         .post("blog/hot-list", {})
         .then(res => {
           commit("setHotBlogList", res.data.hotBlogList)
+          resolve();
+        })
+        .catch(() => {});
+    });
+  },
+  getBlogInfo({
+    commit
+  }, id) {
+    return new Promise(resolve => {
+      http
+        .post("blog/info", { id })
+        .then(res => {
+          commit("setBlogInfo", res.data.blogInfo)
           resolve();
         })
         .catch(() => {});

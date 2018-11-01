@@ -88,7 +88,7 @@ export default {
       let that = this;
       that.title = "";
       that.content = "";
-      that.tagArr = "";
+      that.tagArr = [];
       that.value = "";
     }
   }
