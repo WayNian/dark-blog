@@ -1,48 +1,40 @@
 <template>
-    <div class="container">
-        <div class="animated bounceInLeft list-view">
-            <Card :bordered="false" v-for="(item, index) in blogList" :key="index">
-                <span slot="title" class="title-text" @click="toBlogInfo(item)" style="cursor:pointer">{{item.title}}</span>
-                <div>
-                    <!-- <div class="time-viewß"> -->
-                    {{getTime(item.createAt)}}
-                    <span class="blog-list-info-text">
-                        查看：200  评论：1
-                    </span>
-                    <!-- </div> -->
-                    <div class="tag-view">
-                        <Tag color="default" v-for="(tagsItem, index) in item.tags" :key="index">{{tagsItem}}</Tag>
-                        <!-- <Tag color="primary">primary</Tag>
-                        <Tag color="success">success</Tag>
-                        <Tag color="error">error</Tag>
-                        <Tag color="warning">warning</Tag> -->
-                    </div>
-                </div>
-
-            </Card>
+  <div class="container">
+    <Col
+      type="flex"
+      :xs="{ span: 22}"
+      :sm="{ span: 22}"
+      :lg="{ span: 14}"
+    >
+    <div class="animated bounceInLeft list-view">
+      <Card
+        :bordered="false"
+        v-for="(item, index) in blogList"
+        :key="index"
+      >
+        <span
+          slot="title"
+          class="title-text"
+          @click="toBlogInfo(item)"
+          style="cursor:pointer"
+        >{{item.title}}</span>
+        <div>
+          {{getTime(item.createAt)}}
+          <span class="blog-list-info-text">
+            查看：200 评论：1
+          </span>
+          <div class="tag-view">
+            <Tag
+              color="default"
+              v-for="(tagsItem, index) in item.tags"
+              :key="index"
+            >{{tagsItem}}</Tag>
+          </div>
         </div>
-        <div class="right-view animated bounceInRight">
-            <Card title="热门文章" icon="md-list-box" :padding="0" shadow style="width: 340px;">
-                <CellGroup v-for="(item, index) in hotBlogList" :key="index">
-                    <Cell  :title="limitTitle(item.title)" to="/components/badge">
-                    </Cell>
-                </CellGroup>
-            </Card>
-            <Card title="导航" icon="md-list-box" :padding="0" shadow style="width: 340px; height: 400px;">
-                <Tag color="red" class="right-tag">red</Tag>
-                <Tag color="volcano" class="right-tag">volcano</Tag>
-                <Tag color="orange" class="right-tag">orange</Tag>
-                <Tag color="gold" class="right-tag">gold</Tag>
-                <Tag color="yellow" class="right-tag">yellow</Tag>
-                <Tag color="lime" class="right-tag">lime</Tag>
-                <Tag color="green" class="right-tag">green</Tag>
-                <Tag color="cyan" class="right-tag">cyan</Tag>
-                <Tag color="blue" class="right-tag">blue</Tag>
-                <Tag color="geekblue" class="right-tag">geekblue</Tag>
-                <Tag color="purple" class="right-tag">purple</Tag>
-            </Card>
-        </div>
+      </Card>
     </div>
+    </Col>
+  </div>
 
 </template>
 
@@ -52,13 +44,13 @@ const dateFormat = require("dateformat");
 export default {
   data() {
     return {
-      key: "value",
+      key: "value"
     };
   },
   computed: {
-    ...mapState("blog",{
+    ...mapState("blog", {
       blogList: state => state.blogList,
-      hotBlogList: state => state.hotBlogList,
+      hotBlogList: state => state.hotBlogList
     })
   },
   mounted() {
@@ -71,7 +63,7 @@ export default {
       getHotBlogList: "getHotBlogList"
     }),
     limitTitle(content) {
-      if(!content) return
+      if (!content) return;
       if (content.length > 22) {
         return content.slice(0, 22) + "...";
       }
@@ -97,28 +89,35 @@ export default {
 
 <style lang="scss" scoped>
 .container {
-  margin-top: 80px;
+  margin-top: 5rem;
   display: flex;
   justify-content: center;
 }
 .list-view {
   display: flex;
-  width: 60%;
   align-items: center;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 10px;
 }
 .ivu-card {
-  width: 100%;
+  width: 33%;
   border-radius: 0;
   border: 1px solid #efefef;
   line-height: 30px;
-  margin-bottom: 20px;
+  margin: 10px;
   .title-text {
     font-size: 20px;
     font-weight: 700;
   }
   .blog-list-info-text {
     margin-left: 20px;
+  }
+}
+@media only screen and (max-width: 750px) {
+  .ivu-card {
+    width: 100%;
+    background-color: aqua;
   }
 }
 .right-view {

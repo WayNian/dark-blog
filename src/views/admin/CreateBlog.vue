@@ -20,8 +20,7 @@
 </template>
 
 <script>
-import marked from "marked";
-import { mapActions, mapState } from "vuex";
+import { mapActions } from "vuex";
 export default {
   data() {
     return {
@@ -46,14 +45,11 @@ export default {
   },
   mounted() {},
   methods: {
-      ...mapActions("blog", {
-      createBlog: "createBlog",
+    ...mapActions("blog", {
+      createBlog: "createBlog"
     }),
     changeData(value, render) {
-      let that = this;
-      that.content =  marked(value, {
-            sanitize: true
-          });
+      this.content = render;
     },
     handleClose(done) {
       this.$confirm("确认关闭？")
@@ -66,7 +62,7 @@ export default {
       let that = this;
       if (!that.title.trim()) return this.$Message.info("标题不能为空");
       if (!that.content.trim()) return this.$Message.info("内容不能为空");
-      if (!that.tagArr || !that.tagArr.length){
+      if (!that.tagArr || !that.tagArr.length) {
         return this.$Message.info("标签不能为空");
       }
       if (that.tagArr.length > 3) {
@@ -77,12 +73,15 @@ export default {
         content: that.content,
         tags: that.tagArr
       };
-      that.createBlog(data).then(() => {
-        this.$Message.success("提交成功");
-        that.clearContent();
-      }).catch(() => {
-        this.$Message.error("提交失败");
-      })
+      that
+        .createBlog(data)
+        .then(() => {
+          this.$Message.success("提交成功");
+          that.clearContent();
+        })
+        .catch(() => {
+          this.$Message.error("提交失败");
+        });
     },
     clearContent() {
       let that = this;
@@ -97,17 +96,17 @@ export default {
 
 <style lang="scss" scoped>
 .layout {
-    padding: 10px;
-    background-color: #ffffff !important;
-    .submit-view {
-        text-align: center;
-        margin-top: 20px;
-    }
-    .v-note-wrapper {
-        z-index: 1;
-    }
+  padding: 10px;
+  background-color: #ffffff !important;
+  .submit-view {
+    text-align: center;
+    margin-top: 20px;
+  }
+  .v-note-wrapper {
+    z-index: 1;
+  }
 }
 .v-note-wrapper.fullscreen {
-    z-index: 9999 !important;
+  z-index: 9999 !important;
 }
 </style>

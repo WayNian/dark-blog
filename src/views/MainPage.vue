@@ -1,31 +1,54 @@
 <template>
-    <div class="layout">
-        <div>
-            <Menu mode="horizontal" :active-name="getActiveName" @on-select="onSelect">
-                <div class="layout-logo">
-                    <img src="../assets/keda.png" alt="" @click="goManageBlog">
-                </div>
-                <div class="layout-nav">
-                    <MenuItem name="index"> 首页
-                    </MenuItem>
-                    <MenuItem name="blog-list"> 博客
-                    </MenuItem>
-                    <MenuItem name="message"> 留言板
-                    </MenuItem>
-                    <MenuItem name="tools"> 小工具
-                    </MenuItem>
-                    <MenuItem name="about"> 关于
-                    </MenuItem>
-                </div>
-            </Menu>
-        </div>
-        <div style="min-height: 90vh;">
-            <router-view></router-view>
-        </div>
-        <div class="footer">
-            <!-- 已默默运行{{}} -->
-        </div>
+  <div class="layout">
+    <div>
+      <Menu
+        mode="horizontal"
+        :active-name="getActiveName"
+        @on-select="onSelect"
+      >
+        <Row>
+          <Col
+            :xs="{ span: 0}"
+            :sm="{ span: 0}"
+            :lg="{ span: 5 }"
+          >
+          <div class="layout-logo">
+            <img
+              src="../assets/keda.png"
+              title="waynian"
+              @click="goManageBlog"
+            >
+          </div>
+          </Col>
+          <Col
+            :xs="{ span: 0}"
+            :sm="{ span: 0}"
+            :lg="{ span: 9, offset:10}"
+          >
+          <div class="layout-nav">
+            <MenuItem name="index"> 首页
+            </MenuItem>
+            <MenuItem name="blog-list"> 博客
+            </MenuItem>
+            <MenuItem name="message"> 留言板
+            </MenuItem>
+            <MenuItem name="tools"> 小工具
+            </MenuItem>
+            <MenuItem name="about"> 关于
+            </MenuItem>
+          </div>
+          </Col>
+        </Row>
+      </Menu>
     </div>
+    <div>
+      <router-view></router-view>
+    </div>
+    <div class="footer">
+      <!-- 已默默运行{{}} -->
+    </div>
+    <BackTop></BackTop>
+  </div>
 </template>
 <script>
 export default {
@@ -84,7 +107,6 @@ export default {
 .layout {
   position: relative;
   overflow: hidden;
-  background-color: #efefef;
 }
 .ivu-menu-light {
   position: fixed;
@@ -119,7 +141,6 @@ export default {
   border-bottom: 2px solid #209e85;
 }
 .layout-nav {
-  width: 520px;
   margin: 0 auto;
   margin-right: 20px;
 }

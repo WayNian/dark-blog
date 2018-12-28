@@ -4,7 +4,6 @@ import mavonEditor from "mavon-editor"; // markdwon
 import "mavon-editor/dist/css/index.css";
 import animate from "animate.css";
 import hightLight from "./utils/highlight";
-import { get, post } from "./http";
 import App from "./App.vue";
 import router from "./router/";
 import store from "./store/index";
@@ -14,11 +13,6 @@ Vue.use(mavonEditor);
 Vue.use(hightLight);
 Vue.use(animate);
 Vue.config.productionTip = false;
-
-Vue.prototype.$http = {
-  get,
-  post
-};
 
 new Vue({
   router,

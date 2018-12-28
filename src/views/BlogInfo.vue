@@ -6,7 +6,7 @@
             </div>
         </div>
         <mavon-editor v-html="formatContent(blogInfo)" v-highlight/>
-        <!-- <div v-html="value" v-highlight></div> -->
+        <!-- <div v-html="formatContent(blogInfo)" v-highlight></div> -->
         <div class="footer-view">
         </div>
     </div>
@@ -14,18 +14,6 @@
 
 <script>
 import { mapActions, mapState } from "vuex";
-import marked from "marked";
-var rendererMD = new marked.Renderer();
-marked.setOptions({
-  renderer: rendererMD,
-  gfm: true,
-  tables: true,
-  breaks: false,
-  pedantic: false,
-  sanitize: false,
-  smartLists: true,
-  smartypants: false
-});
 export default {
   data() {
     return {
@@ -36,18 +24,20 @@ export default {
       title: ""
     };
   },
-   computed: {
-    ...mapState("blog",{
-      blogInfo: state => state.blogInfo,
+  computed: {
+    ...mapState("blog", {
+      blogInfo: state => state.blogInfo
     })
   },
   mounted() {
     let id = this.$route.params.id;
     this.getBlogInfo(id);
+    this.addReadNum(id);
   },
   methods: {
-     ...mapActions("blog", {
+    ...mapActions("blog", {
       getBlogInfo: "getBlogInfo",
+      addReadNum: "addReadNum"
     }),
     handleClose(done) {
       this.$confirm("确认关闭？")
@@ -58,8 +48,7 @@ export default {
     },
     formatContent(content) {
       console.log(content.content);
-      return content.content
-      
+      return content.content;
     }
   }
 };
@@ -71,7 +60,7 @@ export default {
     left: 20%;
     right: 20%;
   }
-  margin-top: 20px;
+  // margin-top: 20px;
   .header-view {
     min-width: 600px;
   }

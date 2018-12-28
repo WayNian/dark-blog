@@ -1,13 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"/>
-    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
-    <title>可达鸭</title>
-  </head>
-  <body>
-    <div id="app"></div>
-  </body>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+  <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+  <title>可达鸭</title>
+  <style>
+    @media screen and (max-width: 320px) {
+      html {
+        font-size: 42.667px;
+        font-size: -webkit-calc(13.33333333vw);
+        font-size: calc(13.33333333vw);
+      }
+    }
+
+    @media screen and (max-width: 360px) and (min-width: 321px) {
+      html {
+        font-size: 48px;
+        font-size: -webkit-calc(13.33333333vw);
+        font-size: calc(13.33333333vw);
+      }
+    }
+
+    @media screen and (max-width: 375px) and (min-width: 361px) {
+      html {
+        font-size: 50px;
+        font-size: -webkit-calc(13.33333333vw);
+        font-size: calc(13.33333333vw);
+      }
+    }
+
+    @media screen and (max-width: 412px) and (min-width: 394px) {
+      html {
+        font-size: 54.93px;
+        font-size: -webkit-calc(13.33333333vw);
+        font-size: calc(13.33333333vw);
+      }
+    }
+
+    @media screen and (max-width: 414px) and (min-width: 413px) {
+      html {
+        font-size: 55.2px;
+        font-size: -webkit-calc(13.33333333vw);
+        font-size: calc(13.33333333vw);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app"></div>
+</body>
+
 </html>

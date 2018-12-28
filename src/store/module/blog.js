@@ -19,57 +19,60 @@ const mutations = {
 };
 
 const actions = {
-  getBlogList({
-    commit
-  }) {
+  getBlogList({ commit }) {
     return new Promise(resolve => {
       http
         .post("blog/list", {})
         .then(res => {
-          commit("setBlogList", res.data.blogList)
+          commit("setBlogList", res.data.blogList);
           resolve();
         })
         .catch(() => {});
     });
   },
-  getHotBlogList({
-    commit
-  }) {
+  getHotBlogList({ commit }) {
     return new Promise(resolve => {
       http
         .post("blog/hot-list", {})
         .then(res => {
-          commit("setHotBlogList", res.data.hotBlogList)
+          commit("setHotBlogList", res.data.hotBlogList);
           resolve();
         })
         .catch(() => {});
     });
   },
-  getBlogInfo({
-    commit
-  }, id) {
+  getBlogInfo({ commit }, id) {
     return new Promise(resolve => {
       http
         .post("blog/info", { id })
         .then(res => {
-          commit("setBlogInfo", res.data.blogInfo)
+          commit("setBlogInfo", res.data.blogInfo);
           resolve();
         })
         .catch(() => {});
     });
   },
-  createBlog({
-    commit
-  }, blogInfo) {
+  createBlog({}, blogInfo) {
     return new Promise(resolve => {
       http
-        .post("blog/write", {...blogInfo})
-        .then(res => {
+        .post("blog/write", { ...blogInfo })
+        .then(() => {
           resolve();
         })
         .catch(() => {});
     });
   },
+  //TODO 做函数防抖
+  addReadNum({}, id) {
+    return new Promise(resolve => {
+      http
+        .post("blog/count", { id })
+        .then(() => {
+          resolve();
+        })
+        .catch(() => {});
+    });
+  }
 };
 
 export default {
